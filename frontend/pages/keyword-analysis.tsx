@@ -3,6 +3,7 @@ import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import Navigation from '../components/Navigation';
 import BlogCard from '../components/BlogCard';
 import { getApiUrl } from '../utils/api';
 
@@ -306,6 +307,7 @@ export default function KeywordAnalysis() {
         `}</style>
       </Head>
 
+      <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           {/* 헤더 */}
@@ -317,18 +319,6 @@ export default function KeywordAnalysis() {
               <p className="text-gray-600 text-xs sm:text-sm md:text-base">
                 네이버 데이터랩을 활용한 실시간 키워드 트렌드 분석
               </p>
-            </div>
-            
-            {/* 홈으로 돌아가기 버튼 */}
-            <div className="flex-shrink-0 w-full md:w-auto">
-              <button
-                onClick={() => router.push('/')}
-                className="w-full md:w-auto px-4 sm:px-6 py-2 sm:py-3 bg-green-600 text-white rounded-lg text-sm sm:text-base lg:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg flex items-center justify-center gap-2"
-                title="홈 화면으로 돌아가기"
-              >
-                <span className="text-base sm:text-lg">🏠</span>
-                <span className="font-medium">홈으로</span>
-              </button>
             </div>
           </div>
 
