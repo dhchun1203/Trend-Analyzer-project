@@ -31,10 +31,13 @@ export default function Home() {
         
         const res = await axios.get(`${apiUrl}/api/popular-products`);
         console.log('✅ API 응답:', res.data);
-        console.log('✅ 상품 개수:', res.data.items?.length || 0);
+        console.log('✅ 전체 상품 개수:', res.data.items?.length || 0);
         
         if (res.data.items && Array.isArray(res.data.items)) {
-          setProducts(res.data.items);
+          // 상품 개수를 50개로 제한하여 로딩 시간 단축
+          const limitedProducts = res.data.items.slice(0, 50);
+          console.log('✅ 표시할 상품 개수:', limitedProducts.length);
+          setProducts(limitedProducts);
         } else {
           console.warn('⚠️ 응답 형식이 올바르지 않습니다:', res.data);
           setError('상품 데이터 형식이 올바르지 않습니다.');
