@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import Navigation from "../components/Navigation";
 import Link from "next/link";
+import { getApiUrl } from "../utils/api";
 
 interface Product {
   rank: number;
@@ -18,8 +19,14 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("/api/crawl"); // Next.js API 라우트 사용
-      setProducts(res.data.items);
+      try {
+        // 백엔드 API 직접 호출 (GitHub Pages 호환)
+        const apiUrl = getApiUrl();
+        const res = await axios.get(`${apiUrl}/api/popular-products`);
+        setProducts(res.data.items || []);
+      } catch (error) {
+        console.error('상품 데이터 로드 실패:', error);
+      }
     };
     fetchData();
   }, []);
