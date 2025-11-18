@@ -43,21 +43,21 @@ export default function BlogCard({ blog }: BlogCardProps) {
 
   return (
     <div 
-      className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer border border-gray-200 hover:border-blue-300 blog-card group"
+      className="bg-white rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow cursor-pointer border border-gray-200 hover:border-blue-300 blog-card group"
       onClick={handleBlogClick}
     >
       {/* 블로그 제목 */}
-      <h3 className="text-lg font-semibold text-gray-800 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
         {blog.title || '제목 없음'}
       </h3>
       
       {/* 블로그 내용 미리보기 */}
-      <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
+      <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-3 leading-relaxed">
         {blog.description || '내용 미리보기가 없습니다.'}
       </p>
       
       {/* 블로그 정보 */}
-      <div className="flex items-center justify-between text-sm text-gray-500">
+      <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500">
         <div className="flex items-center gap-2">
           <span className="text-blue-600">📝</span>
           {blog.bloggername ? (

@@ -57,13 +57,13 @@ export default function Categories() {
       <Navigation />
       
       <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
           {/* 헤더 섹션 */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-3 sm:mb-4 px-2">
               📂 카테고리별 상품
             </h1>
-            <p className="text-gray-600 text-lg mb-6">
+            <p className="text-gray-600 text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 px-4">
               관심 있는 카테고리를 선택하여 다양한 상품을 둘러보세요
             </p>
             <Link 
@@ -75,24 +75,24 @@ export default function Categories() {
           </div>
 
           {/* 카테고리 선택 */}
-          <div className="mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="mb-8 sm:mb-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`p-6 rounded-lg border-2 transition-all duration-200 ${
+                  className={`p-3 sm:p-4 md:p-6 rounded-lg border-2 transition-all duration-200 ${
                     selectedCategory === category.id
-                      ? 'border-blue-500 bg-blue-50 shadow-lg'
+                      ? 'border-blue-500 bg-blue-50 shadow-lg scale-105'
                       : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
                   }`}
                 >
                   <div className="text-center">
-                    <div className="text-2xl mb-2">{category.name.split(' ')[0]}</div>
-                    <div className="font-semibold text-gray-800 mb-1">
+                    <div className="text-xl sm:text-2xl mb-1 sm:mb-2">{category.name.split(' ')[0]}</div>
+                    <div className="font-semibold text-gray-800 text-xs sm:text-sm md:text-base mb-1">
                       {category.name.split(' ').slice(1).join(' ')}
                     </div>
-                    <div className="text-sm text-gray-600">{category.description}</div>
+                    <div className="text-[10px] sm:text-xs text-gray-600 hidden sm:block">{category.description}</div>
                   </div>
                 </button>
               ))}
@@ -101,19 +101,19 @@ export default function Categories() {
 
           {/* 선택된 카테고리 상품 */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 px-2">
               {categories.find(c => c.id === selectedCategory)?.name} 상품
             </h2>
             
             {loading ? (
-              <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-                <p className="mt-4 text-gray-600">상품을 불러오는 중...</p>
+              <div className="text-center py-8 sm:py-12">
+                <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-blue-600 mx-auto"></div>
+                <p className="mt-4 text-gray-600 text-sm sm:text-base">상품을 불러오는 중...</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
                 {products.map((item) => (
-                  <div key={item.rank} className="bg-white rounded-lg p-2 shadow-sm product-card">
+                  <div key={item.rank} className="bg-white rounded-lg p-1 sm:p-2 shadow-sm product-card">
                     <ProductCard
                       imageUrl={item.image_url}
                       productName={item.product_name}

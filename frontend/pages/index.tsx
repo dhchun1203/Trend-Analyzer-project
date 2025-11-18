@@ -61,18 +61,18 @@ export default function Home() {
     <>
       <Navigation />
       <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
           {/* 헤더 섹션 */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent mb-3 sm:mb-4 px-2">
               🛍️ 인기상품 모음
             </h1>
-            <p className="text-gray-600 text-lg mb-6">
+            <p className="text-gray-600 text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 px-4">
               네이버 쇼핑의 인기 상품들을 카테고리별로 확인하세요
             </p>
             <Link 
               href="/keyword-analysis"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+              className="inline-block bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base lg:text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
             >
               🔍 키워드 트렌드 분석하기
             </Link>
@@ -101,9 +101,9 @@ export default function Home() {
         )}
         
         {!loading && !error && products.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
           {products.map((item) => (
-            <div key={item.rank} className="mb-8 md:mb-12 bg-white rounded-lg p-2 shadow-sm product-card">
+            <div key={item.rank} className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 bg-white rounded-lg p-1 sm:p-2 shadow-sm product-card">
               <ProductCard
                 imageUrl={item.image_url}
                 productName={item.product_name}

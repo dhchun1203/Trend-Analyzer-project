@@ -307,46 +307,46 @@ export default function KeywordAnalysis() {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           {/* 헤더 */}
-          <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-6 sm:mb-8 gap-3 sm:gap-4">
             <div className="text-center md:text-left flex-1">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2">
                 🔍 키워드 트렌드 분석
               </h1>
-              <p className="text-gray-600 text-sm md:text-base">
+              <p className="text-gray-600 text-xs sm:text-sm md:text-base">
                 네이버 데이터랩을 활용한 실시간 키워드 트렌드 분석
               </p>
             </div>
             
             {/* 홈으로 돌아가기 버튼 */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 w-full md:w-auto">
               <button
                 onClick={() => router.push('/')}
-                className="px-6 py-3 bg-green-600 text-white rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg flex items-center gap-2"
+                className="w-full md:w-auto px-4 sm:px-6 py-2 sm:py-3 bg-green-600 text-white rounded-lg text-sm sm:text-base lg:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg flex items-center justify-center gap-2"
                 title="홈 화면으로 돌아가기"
               >
-                <span className="text-lg">🏠</span>
+                <span className="text-base sm:text-lg">🏠</span>
                 <span className="font-medium">홈으로</span>
               </button>
             </div>
           </div>
 
           {/* 키워드 입력 폼 */}
-          <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 mb-8">
-            <div className="flex gap-4">
+          <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <input
                 type="text"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                placeholder="분석할 키워드를 입력하세요 (예: 로봇청소기, 여름원피스)"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 text-gray-800"
+                placeholder="분석할 키워드를 입력하세요"
+                className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-500 text-gray-800 text-sm sm:text-base"
                 onKeyPress={(e) => e.key === 'Enter' && handleAnalyze()}
               />
               <button
                 onClick={handleAnalyze}
                 disabled={loading}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm sm:text-base font-semibold"
               >
                 {loading ? (
                   <div className="flex items-center gap-2">
@@ -397,48 +397,48 @@ export default function KeywordAnalysis() {
               </div>
               
               {/* 트렌드 분석 카드 */}
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
                   📊 트렌드 분석 결과
                 </h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                  <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-4">
-                    <div className="text-sm font-medium opacity-90">평균 트렌드</div>
-                    <div className="text-2xl font-bold">{analysis.trend_analysis.avg_trend}</div>
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
+                  <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-3 sm:p-4">
+                    <div className="text-xs sm:text-sm font-medium opacity-90">평균 트렌드</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold">{analysis.trend_analysis.avg_trend}</div>
                   </div>
                   
-                  <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4">
-                    <div className="text-sm font-medium opacity-90">데이터 포인트</div>
-                    <div className="text-2xl font-bold text-gray-800">
+                  <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-3 sm:p-4">
+                    <div className="text-xs sm:text-sm font-medium opacity-90">데이터 포인트</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold">
                       {analysis.trend_analysis.data_points || 7}
                     </div>
                   </div>
-                  <div className="bg-white p-4 rounded-lg shadow">
-                    <div className="text-sm text-gray-600">최고 트렌드</div>
-                    <div className="text-2xl font-bold text-gray-800">
+                  <div className="bg-white p-3 sm:p-4 rounded-lg shadow">
+                    <div className="text-xs sm:text-sm text-gray-600">최고 트렌드</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
                       {analysis.trend_analysis.max_trend || analysis.trend_analysis.avg_trend}
                     </div>
                   </div>
                   
-                  <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-4">
-                    <div className="text-sm font-medium opacity-90">트렌드 방향</div>
-                    <div className="text-2xl font-bold flex items-center gap-2">
+                  <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-3 sm:p-4">
+                    <div className="text-xs sm:text-sm font-medium opacity-90">트렌드 방향</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold flex items-center gap-1 sm:gap-2">
                       {getTrendDirectionIcon(analysis.trend_analysis.trend_direction)}
-                      {analysis.trend_analysis.trend_direction}
+                      <span className="text-xs sm:text-sm md:text-base">{analysis.trend_analysis.trend_direction}</span>
                     </div>
                   </div>
                   
-                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg p-4">
-                    <div className="text-sm font-medium opacity-90">인기도</div>
-                    <div className="text-2xl font-bold">{analysis.summary?.popularity}</div>
+                  <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg p-3 sm:p-4">
+                    <div className="text-xs sm:text-sm font-medium opacity-90">인기도</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold">{analysis.summary?.popularity}</div>
                   </div>
                 </div>
 
                 {/* 트렌드 차트 */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">📈 7일 트렌드 변화</h3>
-                  <div className="h-64">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">📈 7일 트렌드 변화</h3>
+                  <div className="h-48 sm:h-64 md:h-80">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={generateTrendChartData()}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -454,15 +454,15 @@ export default function KeywordAnalysis() {
 
               {/* 검색량 통계 */}
               {analysis.search_volume_stats && (
-                <div className="bg-white rounded-lg shadow-lg p-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
                     📈 검색량 통계
                   </h2>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-800 mb-4">검색량 분포</h3>
-                      <div className="h-64">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4">검색량 분포</h3>
+                      <div className="h-48 sm:h-64">
                         <ResponsiveContainer width="100%" height="100%">
                           <PieChart>
                             <Pie
@@ -485,43 +485,43 @@ export default function KeywordAnalysis() {
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <div className="text-sm text-gray-600">일일 검색량</div>
-                        <div className="text-2xl font-bold text-gray-800">
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                        <div className="text-xs sm:text-sm text-gray-600">일일 검색량</div>
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
                           {analysis.search_volume_stats?.daily_searches?.toLocaleString() || 'N/A'}
                         </div>
                       </div>
-                      <div className="bg-white p-4 rounded-lg shadow">
-                        <div className="text-sm text-gray-600">월간 검색량</div>
-                        <div className="text-2xl font-bold text-gray-800">
+                      <div className="bg-white p-3 sm:p-4 rounded-lg shadow">
+                        <div className="text-xs sm:text-sm text-gray-600">월간 검색량</div>
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
                           {analysis.search_volume_stats?.monthly_searches?.toLocaleString() || 'N/A'}
                         </div>
                       </div>
                       
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <div className="text-sm text-gray-600">주간 검색량</div>
-                        <div className="text-2xl font-bold text-gray-800">
+                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                        <div className="text-xs sm:text-sm text-gray-600">주간 검색량</div>
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
                           {analysis.search_volume_stats?.weekly_searches?.toLocaleString() || 'N/A'}
                         </div>
                       </div>
                       
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <div className="text-sm text-gray-600">검색량 레벨</div>
-                        <div className="text-2xl font-bold text-gray-800">
+                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                        <div className="text-xs sm:text-sm text-gray-600">검색량 레벨</div>
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
                           {analysis.search_volume_stats?.volume_level || 'N/A'}
                         </div>
                       </div>
-                      <div className="bg-white p-4 rounded-lg shadow">
-                        <div className="text-sm text-gray-600">경쟁도</div>
-                        <div className="text-2xl font-bold text-gray-800">
+                      <div className="bg-white p-3 sm:p-4 rounded-lg shadow">
+                        <div className="text-xs sm:text-sm text-gray-600">경쟁도</div>
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
                           {analysis.search_volume_stats?.competition || 'N/A'}
                         </div>
                       </div>
                       
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <div className="text-sm text-gray-600">계절성</div>
-                        <div className="text-lg font-semibold text-gray-800">
+                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                        <div className="text-xs sm:text-sm text-gray-600">계절성</div>
+                        <div className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
                           {analysis.search_volume_stats.seasonality}
                         </div>
                       </div>
@@ -532,16 +532,16 @@ export default function KeywordAnalysis() {
 
               {/* 연관 키워드 */}
               {(analysis.related_keywords && analysis.related_keywords.length > 0) || shoppingKeywords.length > 0 ? (
-                <div className="bg-white rounded-lg shadow-lg p-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
                     🔗 연관 키워드
                   </h2>
                   
                   {/* 탭 메뉴 */}
-                  <div className="flex mb-6 border-b border-gray-200">
+                  <div className="flex mb-4 sm:mb-6 border-b border-gray-200 overflow-x-auto">
                     <button
                       onClick={() => setActiveTab('shopping')}
-                      className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
+                      className={`px-4 sm:px-6 py-2 sm:py-3 font-medium text-xs sm:text-sm border-b-2 transition-colors whitespace-nowrap ${
                         activeTab === 'shopping'
                           ? 'border-blue-500 text-blue-600'
                           : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -551,7 +551,7 @@ export default function KeywordAnalysis() {
                     </button>
                     <button
                       onClick={() => setActiveTab('all')}
-                      className={`px-6 py-3 font-medium text-sm border-b-2 transition-colors ${
+                      className={`px-4 sm:px-6 py-2 sm:py-3 font-medium text-xs sm:text-sm border-b-2 transition-colors whitespace-nowrap ${
                         activeTab === 'all'
                           ? 'border-blue-500 text-blue-600'
                           : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -563,7 +563,7 @@ export default function KeywordAnalysis() {
 
                   {/* 쇼핑 특화 키워드 */}
                   {activeTab === 'shopping' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                       {shoppingKeywords.map((related, index) => (
                         <div 
                           key={index} 
@@ -622,7 +622,7 @@ export default function KeywordAnalysis() {
 
                   {/* 전체 연관 키워드 */}
                   {activeTab === 'all' && analysis.related_keywords && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                       {analysis.related_keywords.map((related, index) => (
                         <div 
                           key={index} 
@@ -675,25 +675,25 @@ export default function KeywordAnalysis() {
 
               {/* 블로그 검색 결과 */}
               {blogResults && (
-                <div className="bg-white rounded-lg shadow-lg p-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
                     📝 관련 블로그 포스트
                   </h2>
                   
                   {/* 검색 결과 정보 */}
-                  <div className="mb-6 p-4 bg-blue-50 rounded-lg">
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <span>
+                  <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-blue-50 rounded-lg">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 text-xs sm:text-sm text-gray-600">
+                      <span className="break-words">
                         &apos;<span className="font-semibold text-blue-600">{blogResults.keyword}</span>&apos; 
                         키워드로 검색된 블로그 포스트
                       </span>
-                      <span>총 {blogResults.total?.toLocaleString()} 개의 포스트 중 {blogResults.display}개 표시</span>
+                      <span className="whitespace-nowrap">총 {blogResults.total?.toLocaleString()} 개의 포스트 중 {blogResults.display}개 표시</span>
                     </div>
                   </div>
 
                   {/* 블로그 카드 그리드 */}
                   {blogLoading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                       {[...Array(6)].map((_, index) => (
                         <div key={index} className="bg-gray-200 rounded-lg p-6 animate-pulse">
                           <div className="h-6 bg-gray-300 rounded mb-3"></div>
@@ -709,7 +709,7 @@ export default function KeywordAnalysis() {
                       ))}
                     </div>
                   ) : blogResults.blogs && blogResults.blogs.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                       {blogResults.blogs.map((blog, index) => (
                         <BlogCard key={index} blog={blog} />
                       ))}

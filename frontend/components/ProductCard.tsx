@@ -34,19 +34,19 @@ const ProductCard = ({
         <img
           src={imageUrl}
           alt={productName}
-          className="w-full h-40 object-cover transition-transform duration-200"
+          className="w-full h-32 sm:h-36 md:h-40 object-cover transition-transform duration-200"
         />
         {/* 호버 오버레이 */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
       </div>
       
             {/* 콘텐츠 영역 */}
-      <div className="p-3 bg-white min-h-[80px]">
-          <h3 className="font-semibold text-gray-800 text-sm leading-tight line-clamp-2 mb-2 group-hover:text-blue-600 transition-colors">
+      <div className="p-2 sm:p-3 bg-white min-h-[70px] sm:min-h-[80px]">
+          <h3 className="font-semibold text-gray-800 text-xs sm:text-sm leading-tight line-clamp-2 mb-1 sm:mb-2 group-hover:text-blue-600 transition-colors">
             {productName}
           </h3>
-          <p className="text-red-600 font-bold text-sm mb-1">{price}</p>
-          <p className="text-gray-500 text-xs truncate">{mallName}</p>
+          <p className="text-red-600 font-bold text-xs sm:text-sm mb-1">{price}</p>
+          <p className="text-gray-500 text-[10px] sm:text-xs truncate">{mallName}</p>
         </div>
     </a>
   );
