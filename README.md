@@ -6,8 +6,6 @@
 
 #### 1. 네이버 검색 API 통합
 - **새로운 API 키 발급**: 네이버 검색 API 키 추가 발급
-  - Client ID: `glYBC7h0jxBQXpLFcrfm`
-  - Client Secret: `4WMckHU8Ts`
 - **네이버 검색 API 클래스 생성**: `backend/naver_search_api.py`
 - **실제 검색 결과 기반 연관 키워드**: 네이버 검색 API를 활용한 유의미한 연관 키워드 추출
 
