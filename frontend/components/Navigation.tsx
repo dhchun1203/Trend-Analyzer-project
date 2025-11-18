@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function Navigation() {
-  const router = useRouter();
+  // const router = useRouter(); // 향후 활성 링크 표시에 사용 예정
 
   // const isActive = (path: string) => {
   //   return router.pathname === path;

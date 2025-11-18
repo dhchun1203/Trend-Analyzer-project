@@ -39,15 +39,17 @@ export default function Home() {
           console.warn('⚠️ 응답 형식이 올바르지 않습니다:', res.data);
           setError('상품 데이터 형식이 올바르지 않습니다.');
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error('❌ 상품 데이터 로드 실패:', error);
+        const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
+        const axiosError = error && typeof error === 'object' && 'response' in error ? error as { response?: { data?: unknown; status?: number }; config?: unknown } : null;
         console.error('❌ 오류 상세:', {
-          message: error.message,
-          response: error.response?.data,
-          status: error.response?.status,
-          config: error.config
+          message: errorMessage,
+          response: axiosError?.response?.data,
+          status: axiosError?.response?.status,
+          config: axiosError?.config
         });
-        setError(`상품 데이터를 불러올 수 없습니다: ${error.message || '알 수 없는 오류'}`);
+        setError(`상품 데이터를 불러올 수 없습니다: ${errorMessage}`);
       } finally {
         setLoading(false);
       }
