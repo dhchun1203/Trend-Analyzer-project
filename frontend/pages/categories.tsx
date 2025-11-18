@@ -3,6 +3,7 @@ import Head from "next/head";
 import Navigation from "../components/Navigation";
 import ProductCard from "../components/ProductCard";
 import Link from "next/link";
+import { getApiUrl } from "../utils/api";
 
 interface Product {
   rank: number;
@@ -35,7 +36,7 @@ export default function Categories() {
   const fetchCategoryProducts = async (category: string) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8000/api/products/category/${category}`);
+      const response = await fetch(`${getApiUrl()}/api/products/category/${category}`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data.items || []);

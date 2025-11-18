@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import { getApiUrl } from '../utils/api';
 
 interface TestResult {
   success: boolean;
@@ -13,7 +14,7 @@ export default function TestAPI() {
 
   const testAPI = async (endpoint: string, description: string) => {
     try {
-      const response = await fetch(`http://localhost:8000${endpoint}`);
+      const response = await fetch(`${getApiUrl()}${endpoint}`);
       const data = await response.json();
       
       setResults(prev => ({

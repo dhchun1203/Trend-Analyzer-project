@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 import BlogCard from '../components/BlogCard';
+import { getApiUrl } from '../utils/api';
 
 interface TrendAnalysis {
   trend_analysis: {
@@ -77,10 +78,11 @@ export default function KeywordAnalysis() {
 
     try {
       // 트렌드 분석, 블로그 검색, 쇼핑 연관 키워드를 동시에 진행
+      const apiUrl = getApiUrl();
       const [trendResponse, blogResponse, shoppingResponse] = await Promise.all([
-        axios.get(`http://localhost:8000/api/datalab/trend?keyword=${encodeURIComponent(keyword)}`),
-        axios.get(`http://localhost:8000/api/search/blogs?keyword=${encodeURIComponent(keyword)}&display=12`),
-        axios.get(`http://localhost:8000/api/keyword/shopping-related?keyword=${encodeURIComponent(keyword)}`)
+        axios.get(`${apiUrl}/api/datalab/trend?keyword=${encodeURIComponent(keyword)}`),
+        axios.get(`${apiUrl}/api/search/blogs?keyword=${encodeURIComponent(keyword)}&display=12`),
+        axios.get(`${apiUrl}/api/keyword/shopping-related?keyword=${encodeURIComponent(keyword)}`)
       ]);
       
       setAnalysis(trendResponse.data);
@@ -108,10 +110,11 @@ export default function KeywordAnalysis() {
 
     try {
       // 트렌드 분석, 블로그 검색, 쇼핑 연관 키워드를 동시에 진행
+      const apiUrl = getApiUrl();
       const [trendResponse, blogResponse, shoppingResponse] = await Promise.all([
-        axios.get(`http://localhost:8000/api/datalab/trend?keyword=${encodeURIComponent(clickedKeyword)}`),
-        axios.get(`http://localhost:8000/api/search/blogs?keyword=${encodeURIComponent(clickedKeyword)}&display=12`),
-        axios.get(`http://localhost:8000/api/keyword/shopping-related?keyword=${encodeURIComponent(clickedKeyword)}`)
+        axios.get(`${apiUrl}/api/datalab/trend?keyword=${encodeURIComponent(clickedKeyword)}`),
+        axios.get(`${apiUrl}/api/search/blogs?keyword=${encodeURIComponent(clickedKeyword)}&display=12`),
+        axios.get(`${apiUrl}/api/keyword/shopping-related?keyword=${encodeURIComponent(clickedKeyword)}`)
       ]);
       
       setAnalysis(trendResponse.data);

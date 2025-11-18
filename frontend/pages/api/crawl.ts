@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getApiUrl } from "../../utils/api";
 
 type Product = {
   rank: number;
@@ -36,7 +37,8 @@ export default async function handler(
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10초 타임아웃
     
     // 새로운 인기상품 API 호출 (크롤링 대체)
-    const response = await fetch('http://localhost:8000/api/popular-products', {
+    const apiUrl = getApiUrl();
+    const response = await fetch(`${apiUrl}/api/popular-products`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
