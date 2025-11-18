@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 import { getApiUrl } from '../utils/api';
 
 interface TestResult {
@@ -43,27 +44,38 @@ export default function TestAPI() {
         <title>API 테스트 - Trend Analyzer</title>
       </Head>
 
-      <div className="min-h-screen bg-gray-50 py-8">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">🔧 API 테스트</h1>
+      <div className="min-h-screen bg-gray-50 py-4 sm:py-6 md:py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+            {/* 홈으로 이동 버튼 */}
+            <div className="mb-4 sm:mb-6">
+              <Link 
+                href="/"
+                className="inline-flex items-center gap-2 text-sm sm:text-base px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                <span>🏠</span>
+                <span>홈으로 이동</span>
+              </Link>
+            </div>
+            
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">🔧 API 테스트</h1>
             
             <div className="space-y-6">
               {/* 네이버 데이터랩 API 테스트 */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">1. 네이버 데이터랩 API 테스트</h3>
+              <div className="border border-gray-200 rounded-lg p-3 sm:p-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">1. 네이버 데이터랩 API 테스트</h3>
                 <button 
                   onClick={testDatalabAPI}
-                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+                  className="w-full sm:w-auto bg-blue-600 text-white px-3 sm:px-4 py-2 text-sm sm:text-base rounded hover:bg-blue-700 transition-colors"
                 >
                   데이터랩 API 테스트
                 </button>
                 {results.datalab && (
-                  <div className={`mt-3 p-3 rounded ${results.datalab.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
-                    <h4 className={`font-semibold ${results.datalab.success ? 'text-green-800' : 'text-red-800'}`}>
+                  <div className={`mt-3 p-2 sm:p-3 rounded ${results.datalab.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+                    <h4 className={`text-sm sm:text-base font-semibold ${results.datalab.success ? 'text-green-800' : 'text-red-800'}`}>
                       {results.datalab.success ? '✅ 성공!' : '❌ 실패!'}
                     </h4>
-                    <pre className="mt-2 text-sm overflow-x-auto">
+                    <pre className="mt-2 text-xs sm:text-sm overflow-x-auto">
                       {JSON.stringify(results.datalab.data || results.datalab.error, null, 2)}
                     </pre>
                   </div>
@@ -71,29 +83,29 @@ export default function TestAPI() {
               </div>
 
               {/* 키워드 분석 API 테스트 */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">2. 키워드 분석 API 테스트</h3>
-                <div className="flex gap-2 mb-3">
+              <div className="border border-gray-200 rounded-lg p-3 sm:p-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">2. 키워드 분석 API 테스트</h3>
+                <div className="flex flex-col sm:flex-row gap-2 mb-3">
                   <input 
                     type="text" 
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
                     placeholder="테스트 키워드 입력"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-3 py-2 text-sm sm:text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <button 
                     onClick={testKeywordAnalysis}
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
+                    className="w-full sm:w-auto bg-green-600 text-white px-3 sm:px-4 py-2 text-sm sm:text-base rounded hover:bg-green-700 transition-colors whitespace-nowrap"
                   >
                     키워드 분석 테스트
                   </button>
                 </div>
                 {results.keyword && (
-                  <div className={`mt-3 p-3 rounded ${results.keyword.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
-                    <h4 className={`font-semibold ${results.keyword.success ? 'text-green-800' : 'text-red-800'}`}>
+                  <div className={`mt-3 p-2 sm:p-3 rounded ${results.keyword.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+                    <h4 className={`text-sm sm:text-base font-semibold ${results.keyword.success ? 'text-green-800' : 'text-red-800'}`}>
                       {results.keyword.success ? '✅ 성공!' : '❌ 실패!'}
                     </h4>
-                    <pre className="mt-2 text-sm overflow-x-auto">
+                    <pre className="mt-2 text-xs sm:text-sm overflow-x-auto">
                       {JSON.stringify(results.keyword.data || results.keyword.error, null, 2)}
                     </pre>
                   </div>
@@ -101,20 +113,20 @@ export default function TestAPI() {
               </div>
 
               {/* 연관 키워드 API 테스트 */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">3. 연관 키워드 API 테스트</h3>
+              <div className="border border-gray-200 rounded-lg p-3 sm:p-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">3. 연관 키워드 API 테스트</h3>
                 <button 
                   onClick={testRelatedKeywords}
-                  className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+                  className="w-full sm:w-auto bg-purple-600 text-white px-3 sm:px-4 py-2 text-sm sm:text-base rounded hover:bg-purple-700 transition-colors"
                 >
                   연관 키워드 테스트
                 </button>
                 {results.related && (
-                  <div className={`mt-3 p-3 rounded ${results.related.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
-                    <h4 className={`font-semibold ${results.related.success ? 'text-green-800' : 'text-red-800'}`}>
+                  <div className={`mt-3 p-2 sm:p-3 rounded ${results.related.success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+                    <h4 className={`text-sm sm:text-base font-semibold ${results.related.success ? 'text-green-800' : 'text-red-800'}`}>
                       {results.related.success ? '✅ 성공!' : '❌ 실패!'}
                     </h4>
-                    <pre className="mt-2 text-sm overflow-x-auto">
+                    <pre className="mt-2 text-xs sm:text-sm overflow-x-auto">
                       {JSON.stringify(results.related.data || results.related.error, null, 2)}
                     </pre>
                   </div>
@@ -122,29 +134,29 @@ export default function TestAPI() {
               </div>
 
               {/* 새로운 API 키 테스트 */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">4. 새로운 API 키 테스트</h3>
-                <div className="flex gap-2 mb-3">
+              <div className="border border-gray-200 rounded-lg p-3 sm:p-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">4. 새로운 API 키 테스트</h3>
+                <div className="flex flex-col sm:flex-row gap-2 mb-3">
                   <input 
                     type="text" 
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
                     placeholder="테스트 키워드 입력"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-3 py-2 text-sm sm:text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <button 
                     onClick={() => testAPI(`/api/datalab/trend?keyword=${encodeURIComponent(keyword)}`, 'new-api')}
-                    className="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 transition-colors"
+                    className="w-full sm:w-auto bg-orange-600 text-white px-3 sm:px-4 py-2 text-sm sm:text-base rounded hover:bg-orange-700 transition-colors whitespace-nowrap"
                   >
                     새 API 키 테스트
                   </button>
                 </div>
                 {results['new-api'] && (
-                  <div className={`mt-3 p-3 rounded ${results['new-api'].success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
-                    <h4 className={`font-semibold ${results['new-api'].success ? 'text-green-800' : 'text-red-800'}`}>
+                  <div className={`mt-3 p-2 sm:p-3 rounded ${results['new-api'].success ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+                    <h4 className={`text-sm sm:text-base font-semibold ${results['new-api'].success ? 'text-green-800' : 'text-red-800'}`}>
                       {results['new-api'].success ? '✅ 새로운 API 키 성공!' : '❌ 새로운 API 키 실패!'}
                     </h4>
-                    <pre className="mt-2 text-sm overflow-x-auto">
+                    <pre className="mt-2 text-xs sm:text-sm overflow-x-auto">
                       {JSON.stringify(results['new-api'].data || results['new-api'].error, null, 2)}
                     </pre>
                   </div>
@@ -153,15 +165,15 @@ export default function TestAPI() {
             </div>
 
             {/* 전체 결과 요약 */}
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">📊 테스트 결과 요약</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3">📊 테스트 결과 요약</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                 {Object.entries(results).map(([key, result]) => (
-                  <div key={key} className={`p-3 rounded ${result.success ? 'bg-green-100' : 'bg-red-100'}`}>
-                    <div className={`font-semibold ${result.success ? 'text-green-800' : 'text-red-800'}`}>
+                  <div key={key} className={`p-2 sm:p-3 rounded ${result.success ? 'bg-green-100' : 'bg-red-100'}`}>
+                    <div className={`text-sm sm:text-base font-semibold ${result.success ? 'text-green-800' : 'text-red-800'}`}>
                       {key.charAt(0).toUpperCase() + key.slice(1)} API
                     </div>
-                    <div className="text-sm">
+                    <div className="text-xs sm:text-sm mt-1">
                       {result.success ? '✅ 정상 작동' : '❌ 오류 발생'}
                     </div>
                   </div>
