@@ -95,7 +95,6 @@ export default function Navigation() {
               >
                 🧪 API 테스트
               </Link>
-            </div>
           </div>
         </div>
       </div>
