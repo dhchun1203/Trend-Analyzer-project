@@ -4,7 +4,7 @@ import { getApiUrl } from '../utils/api';
 
 interface TestResult {
   success: boolean;
-  data?: any;
+  data?: unknown;
   error?: string;
 }
 
@@ -21,12 +21,13 @@ export default function TestAPI() {
         ...prev,
         [description]: { success: true, data }
       }));
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       setResults(prev => ({
         ...prev,
         [description]: { 
           success: false, 
-          error: error.message 
+          error: errorMessage 
         }
       }));
     }

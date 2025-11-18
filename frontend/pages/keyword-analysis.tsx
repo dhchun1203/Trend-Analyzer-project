@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import BlogCard from '../components/BlogCard';
 import { getApiUrl } from '../utils/api';
 
@@ -60,7 +60,15 @@ export default function KeywordAnalysis() {
   const [keyword, setKeyword] = useState('');
   const [analysis, setAnalysis] = useState<TrendAnalysis | null>(null);
   const [blogResults, setBlogResults] = useState<BlogSearchResult | null>(null);
-  const [shoppingKeywords, setShoppingKeywords] = useState<any[]>([]);
+  interface RelatedKeyword {
+    keyword: string;
+    relevance?: number;
+    search_volume?: string;
+    price_range?: string;
+    category?: string;
+    intent?: string;
+  }
+  const [shoppingKeywords, setShoppingKeywords] = useState<RelatedKeyword[]>([]);
   const [activeTab, setActiveTab] = useState<'all' | 'shopping'>('shopping');
   const [loading, setLoading] = useState(false);
   const [blogLoading, setBlogLoading] = useState(false);
@@ -149,20 +157,20 @@ export default function KeywordAnalysis() {
     }
   };
 
-  const getPopularityColor = (popularity: string) => {
-    switch (popularity) {
-      case '매우 높음':
-        return 'text-red-600';
-      case '높음':
-        return 'text-orange-600';
-      case '보통':
-        return 'text-yellow-600';
-      case '낮음':
-        return 'text-blue-600';
-      default:
-        return 'text-gray-600';
-    }
-  };
+  // const getPopularityColor = (popularity: string) => {
+  //   switch (popularity) {
+  //     case '매우 높음':
+  //       return 'text-red-600';
+  //     case '높음':
+  //       return 'text-orange-600';
+  //     case '보통':
+  //       return 'text-yellow-600';
+  //     case '낮음':
+  //       return 'text-blue-600';
+  //     default:
+  //       return 'text-gray-600';
+  //   }
+  // };
 
   const getSearchVolumeColor = (volume: string) => {
     switch (volume) {
@@ -265,7 +273,7 @@ export default function KeywordAnalysis() {
     ];
   };
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+  // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
   return (
     <>
@@ -364,7 +372,7 @@ export default function KeywordAnalysis() {
                   <span className="text-2xl">🔍</span>
                   <div className="flex-1">
                     <h2 className="text-xl font-bold text-blue-800">
-                      '{keyword}' 키워드 분석 결과
+                      &apos;{keyword}&apos; 키워드 분석 결과
                     </h2>
                     <p className="text-blue-600 text-sm">
                       트렌드 분석, 연관 키워드, 블로그 검색 결과를 확인하세요
@@ -676,7 +684,7 @@ export default function KeywordAnalysis() {
                   <div className="mb-6 p-4 bg-blue-50 rounded-lg">
                     <div className="flex items-center justify-between text-sm text-gray-600">
                       <span>
-                        '<span className="font-semibold text-blue-600">{blogResults.keyword}</span>' 
+                        &apos;<span className="font-semibold text-blue-600">{blogResults.keyword}</span>&apos; 
                         키워드로 검색된 블로그 포스트
                       </span>
                       <span>총 {blogResults.total?.toLocaleString()} 개의 포스트 중 {blogResults.display}개 표시</span>

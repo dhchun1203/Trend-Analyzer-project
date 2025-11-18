@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 export default function Navigation() {
   const router = useRouter();
 
-  const isActive = (path: string) => {
-    return router.pathname === path;
-  };
+  // const isActive = (path: string) => {
+  //   return router.pathname === path;
+  // };
 
   return (
     <nav className="bg-white shadow-lg">
