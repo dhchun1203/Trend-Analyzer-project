@@ -37,13 +37,24 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./frontend
-        run: npm ci
+        run: npm install
 
       - name: Build
         working-directory: ./frontend
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL || 'https://trend-analyzer-project-production.up.railway.app' }}
-        run: npm run build
+          NEXT_PUBLIC_BASE_PATH: '/Trend-Analyzer-project'
+        run: |
+          echo "Building Next.js app for static export..."
+          npm run build 2>&1 | tee build.log || (cat build.log && exit 1)
+          echo "Build completed. Checking output directory..."
+          if [ -d "out" ]; then
+            echo "✓ out directory exists"
+            ls -la out/ | head -20
+          else
+            echo "✗ out directory not found"
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

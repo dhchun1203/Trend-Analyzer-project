@@ -42,7 +42,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-package-lock.json
+# package-lock.json은 커밋해야 함 (프로젝트별로 다름)
+# frontend/package-lock.json은 포함
 yarn.lock
 pnpm-lock.yaml
 
