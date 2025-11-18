@@ -1,0 +1,9 @@
+selenium
+beautifulsoup4
+pymongo
+fastapi
+uvicorn
+python-dotenv
+webdriver-manager
+apscheduler
+requests
