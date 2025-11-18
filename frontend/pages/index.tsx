@@ -16,16 +16,40 @@ interface Product {
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
+        setError(null);
         // 백엔드 API 직접 호출 (GitHub Pages 호환)
         const apiUrl = getApiUrl();
+        console.log('🔍 API URL:', apiUrl);
+        console.log('🔍 Full URL:', `${apiUrl}/api/popular-products`);
+        
         const res = await axios.get(`${apiUrl}/api/popular-products`);
-        setProducts(res.data.items || []);
-      } catch (error) {
-        console.error('상품 데이터 로드 실패:', error);
+        console.log('✅ API 응답:', res.data);
+        console.log('✅ 상품 개수:', res.data.items?.length || 0);
+        
+        if (res.data.items && Array.isArray(res.data.items)) {
+          setProducts(res.data.items);
+        } else {
+          console.warn('⚠️ 응답 형식이 올바르지 않습니다:', res.data);
+          setError('상품 데이터 형식이 올바르지 않습니다.');
+        }
+      } catch (error: any) {
+        console.error('❌ 상품 데이터 로드 실패:', error);
+        console.error('❌ 오류 상세:', {
+          message: error.message,
+          response: error.response?.data,
+          status: error.response?.status,
+          config: error.config
+        });
+        setError(`상품 데이터를 불러올 수 없습니다: ${error.message || '알 수 없는 오류'}`);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -52,7 +76,29 @@ export default function Home() {
             </Link>
           </div>
 
+        {/* 로딩 및 에러 표시 */}
+        {loading && (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <p className="mt-4 text-gray-600">상품을 불러오는 중...</p>
+          </div>
+        )}
+        
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+            <p className="text-red-800 font-semibold">⚠️ {error}</p>
+            <p className="text-red-600 text-sm mt-2">브라우저 콘솔(F12)에서 자세한 오류를 확인하세요.</p>
+          </div>
+        )}
+
         {/* 상품 그리드 */}
+        {!loading && !error && products.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-600">표시할 상품이 없습니다.</p>
+          </div>
+        )}
+        
+        {!loading && !error && products.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-6 md:gap-8">
           {products.map((item) => (
             <div key={item.rank} className="mb-8 md:mb-12 bg-white rounded-lg p-2 shadow-sm product-card">
@@ -67,6 +113,7 @@ export default function Home() {
             </div>
           ))}
         </div>
+        )}
 
         {/* 하단 여백 */}
         <div className="h-8"></div>
