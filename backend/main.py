@@ -396,17 +396,17 @@ def get_popular_products():
                             category_products.append(product)
                             all_products.append(product)
                             
-                            if len(all_products) >= 100:
+                            if len(all_products) >= 50:
                                 break
                 
                 except Exception as e:
                     print(f"키워드 '{keyword}' 검색 중 오류: {e}")
                     continue
                 
-                if len(all_products) >= 100:
+                if len(all_products) >= 50:
                     break
             
-            if len(all_products) >= 100:
+            if len(all_products) >= 50:
                 break
         
         return {"items": all_products, "count": len(all_products), "categories": list(seasonal_keywords.keys())}
