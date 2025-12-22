@@ -65,9 +65,8 @@ vercel --prod
 
 ### vercel.json
 프로젝트 루트에 `vercel.json` 파일이 생성되어 있습니다:
-- `rootDirectory`: `frontend` - 프론트엔드 디렉토리 지정
-- `buildCommand`: 빌드 명령어
-- `outputDirectory`: 빌드 출력 디렉토리
+- `framework`: Next.js 프레임워크 자동 감지
+- **주의**: `rootDirectory`는 Vercel 대시보드에서 설정해야 합니다 (vercel.json에서는 지원하지 않음)
 
 ### next.config.ts
 Vercel 배포를 위해 수정된 설정:
