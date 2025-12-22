@@ -18,8 +18,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",  # 로컬 개발 환경
         "https://dhchun1203.github.io",  # GitHub Pages 도메인
-        "https://*.github.io",  # 모든 GitHub Pages 서브도메인
     ],
+    allow_origin_regex=r"https://.*\.github\.io|https://.*\.vercel\.app",  # GitHub Pages 및 Vercel 도메인 (정규식)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
